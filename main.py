@@ -58,7 +58,10 @@ async def get_assistant_response(
         yield f"data: {{'error': '{str(e)}'}}\n\n"
 
     yield "data: [DONE]\n\n"
-
+    
+@app.get("/")
+async def read_root():
+    return {"Hello": "World"}
 
 @app.post("/chat/completions", response_class=StreamingResponse)
 async def chat_completions(request: fastapi.Request):
